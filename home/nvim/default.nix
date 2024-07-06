@@ -13,6 +13,10 @@
       lazy-nvim
     ];
 
+    extraPackages = with pkgs; [
+      cargo
+    ];
+
     extraLuaConfig = builtins.readFile(./init.lua);
   };
 
