@@ -21,6 +21,8 @@ in
       source = "${catppuccin-theme-xfce4-terminal}/themes/catppuccin-latte.theme";
     };
 
+    programs.password-store.enable = true;
+
     catppuccin.enable = true;
     catppuccin.flavor = "latte";
 

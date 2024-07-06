@@ -93,7 +93,13 @@
     description = "Dmytro-Andrii Kostelnyi";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
-    #  thunderbird
+      gimp
+      libreoffice
+      nodejs_22
+      python3
+      hyfetch
+      pamixer
+      pavucontrol
     ];
   };
 
@@ -108,10 +114,7 @@
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
-     pass
-     gnupg
      xdg-desktop-portal-gtk
-     hyfetch
      xclip
      xdotool
      xsel
@@ -138,19 +141,10 @@
      xfce.xfce4-whiskermenu-plugin
      xfce.xfce4-xkb-plugin
      xfce.xfdashboard
-     pavucontrol
      zip
      unzip
-     lazygit
-     nodejs_22
-     python3
-     gimp
      gcc
      gnumake
-     libreoffice
-     wine
-     winetricks
-     pamixer
      nurl
   ];
 
