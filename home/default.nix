@@ -39,6 +39,12 @@ in
 
     programs.fish = {
       enable = true;
+      plugins = [
+        {
+          name = "pass-fish-completion";
+          src = ./fish/pass-completions;
+        }
+      ];
     };
 
     programs.git = {
