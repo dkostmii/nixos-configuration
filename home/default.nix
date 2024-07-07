@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 let
   catppuccin-theme-xfce4-terminal = pkgs.fetchFromGitHub {
@@ -7,34 +7,91 @@ let
     rev = "6d35252aeec1cf07aa211071324498c9e52b5378";
     sha256 = "sha256-Bhl/U5Tn/Y5gPP8aWuygckdhBXgn7KmCxj/Cgq/C3jU=";
   };
+  catppuccin-gtk-theme = pkgs.stdenv.mkDerivation {
+    pname = "catppuccin-latte-pink-standard+default.zip";
+    version = "1.0.3";
+    buildInputs = with pkgs; [ unzip ];
+
+    src = pkgs.fetchurl {
+      url = "https://github.com/catppuccin/gtk/releases/download/v1.0.3/catppuccin-latte-pink-standard+default.zip";
+      sha256 = "sha256-RSTLtcm3FWu8QfZ1fdbWly54ftUx8W6ax9HD1Cfli98=";
+    };
+
+    sourceRoot = ".";
+
+    buildPhase = ''
+      unzip $src -d $out
+    '';
+
+    meta = with pkgs.lib; {
+      description = "Catppuccin GTK theme with latte preset, pink accent and standard + default";
+      license = licenses.gpl3Only;
+      platforms = platforms.all;
+      homepage = "https://github.com/catppuccin/gtk";
+    };
+  };
 in
 {
-  home-manager.users.dkostmii = { pkgs, ... }: {
+  home-manager.users.dkostmii = { config, pkgs, ... }: {
     imports = [
       <catppuccin/modules/home-manager>
       ./nvim/default.nix
     ];
-    
+
     nixpkgs.config.allowUnfree = true;
 
     home.file.".local/share/xfce4/terminal/colorschemes/catppuccin-latte.theme" = {
       source = "${catppuccin-theme-xfce4-terminal}/themes/catppuccin-latte.theme";
     };
 
+    xdg.configFile."gtk-3.0/settings.ini" = {
+      text = builtins.readFile(./gtk/shared/settings.ini);
+    };
+
+    xdg.configFile."gtk-4.0/settings.ini" = {
+      text = builtins.readFile(./gtk/shared/settings.ini);
+    };
+
+    xdg.configFile."gtk-3.0" = {
+      source = "${catppuccin-gtk-theme}/catppuccin-latte-pink-standard+default/gtk-3.0";
+      recursive = true;
+    };
+
+    xdg.configFile."gtk-4.0" = {
+      source = "${catppuccin-gtk-theme}/catppuccin-latte-pink-standard+default/gtk-4.0";
+      recursive = true;
+    };
+
+    home.file.".local/share/icons/Papirus" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${pkgs.papirus-icon-theme}/share/icons/Papirus";
+    };
+
+    home.file.".icons/Papirus" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.local/share/icons/Papirus";
+    };
+
+    home.file.".local/share/icons/Papirus-Light" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${pkgs.papirus-icon-theme}/share/icons/Papirus-Light";
+    };
+
+    home.file.".icons/Papirus-Light" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.local/share/icons/Papirus-Light";
+    };
+
+    home.file.".local/share/themes/catppuccin-latte-pink-standard+default" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${catppuccin-gtk-theme}/catppuccin-latte-pink-standard+default";
+    };
+
+    home.file.".themes/catppuccin-latte-pink-standard+default" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.local/share/themes/catppuccin-latte-pink-standard+default";
+    };
+
     programs.password-store.enable = true;
 
-    catppuccin.enable = true;
-    catppuccin.flavor = "latte";
-
-    gtk = {
+    catppuccin = {
       enable = true;
-      catppuccin = {
-        enable = true;
-        flavor = "latte";
-        accent = "pink";
-        size = "standard";
-        tweaks = [ "normal" ];
-      };
+      flavor = "latte";
+      accent = "pink";
     };
 
     programs.bash.enable = true;

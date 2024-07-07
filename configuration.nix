@@ -100,6 +100,7 @@
       hyfetch
       pamixer
       pavucontrol
+      papirus-icon-theme
     ];
   };
 
@@ -198,6 +199,7 @@
 
   catppuccin.enable = true;
   catppuccin.flavor = "latte";
+  catppuccin.accent = "pink";
 
   # List services that you want to enable:
 
