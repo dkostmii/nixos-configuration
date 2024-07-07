@@ -11,13 +11,38 @@
 
     plugins = with pkgs.vimPlugins; [
       lazy-nvim
+      codeium-nvim
     ];
 
     extraPackages = with pkgs; [
       cargo
+      codeium
     ];
 
     extraLuaConfig = builtins.readFile(./init.lua);
+  };
+
+  xdg.configFile."nvim/lua/plugins/ai.lua" = {
+    text = ''
+    return {
+      name = "codeium",
+      dir = "${pkgs.vimPlugins.codeium-nvim}",
+      opts = {
+        tools = {
+	        language_server = "${pkgs.codeium}/bin/codeium_language_server",
+	      },
+      },
+      event = "BufEnter",
+      dependencies = {
+        "nvim-cmp",
+        opts = {
+          sources = {
+            { name = "codeium" },
+          },
+        },
+      },
+    }
+    '';
   };
 
   xdg.configFile."nvim/lua/config/lazy.lua" = {
