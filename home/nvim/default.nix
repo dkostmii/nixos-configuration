@@ -35,11 +35,9 @@
       event = "BufEnter",
       dependencies = {
         "nvim-cmp",
-        opts = {
-          sources = {
-            { name = "codeium" },
-          },
-        },
+        opts = function(_, opts)
+          table.insert(opts.sources, { name = "codeium" })
+        end,
       },
     }
     '';
