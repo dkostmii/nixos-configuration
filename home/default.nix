@@ -86,7 +86,12 @@ in
       source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.local/share/themes/catppuccin-latte-pink-standard+default";
     };
 
-    programs.password-store.enable = true;
+    programs.password-store = {
+      enable = true;
+      settings = {
+        PASSWORD_STORE_DIR = "${config.home.homeDirectory}/.password-store";
+      };
+    };
 
     catppuccin = {
       enable = true;
@@ -104,6 +109,13 @@ in
           src = ./fish/pass-completions;
         }
       ];
+    };
+
+    programs.tmux = {
+      enable = true;
+      shell = "${pkgs.fish}/bin/fish";
+      mouse = true;
+      clock24 = true;
     };
 
     programs.git = {
