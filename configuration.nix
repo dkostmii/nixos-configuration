@@ -101,6 +101,8 @@
       pamixer
       pavucontrol
       papirus-icon-theme
+      lazydocker
+      blugon
     ];
   };
 
@@ -146,7 +148,6 @@
      unzip
      gcc
      gnumake
-     nurl
   ];
 
   fonts.packages = with pkgs; [
