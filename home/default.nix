@@ -40,6 +40,19 @@ in
 
     nixpkgs.config.allowUnfree = true;
 
+    home.packages = with pkgs; [
+      gimp
+      libreoffice
+      nodejs_22
+      python3
+      hyfetch
+      pamixer
+      pavucontrol
+      papirus-icon-theme
+      lazydocker
+      blugon
+    ];
+
     home.file.".local/share/xfce4/terminal/colorschemes/catppuccin-latte.theme" = {
       source = "${catppuccin-theme-xfce4-terminal}/themes/catppuccin-latte.theme";
     };

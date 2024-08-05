@@ -92,18 +92,6 @@
     isNormalUser = true;
     description = "Dmytro-Andrii Kostelnyi";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
-    packages = with pkgs; [
-      gimp
-      libreoffice
-      nodejs_22
-      python3
-      hyfetch
-      pamixer
-      pavucontrol
-      papirus-icon-theme
-      lazydocker
-      blugon
-    ];
   };
 
   # Install firefox.
