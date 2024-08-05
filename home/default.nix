@@ -51,6 +51,7 @@ in
       papirus-icon-theme
       lazydocker
       blugon
+      glow
     ];
 
     home.file.".local/share/xfce4/terminal/colorschemes/catppuccin-latte.theme" = {
