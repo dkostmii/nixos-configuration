@@ -15,7 +15,6 @@
 
     extraPackages = with pkgs; [
       cargo
-      codeium
     ];
 
     extraLuaConfig = builtins.readFile(./init.lua);
