@@ -1,8 +1,8 @@
-vim.filetype.add({
+vim.filetype.add {
   extension = {
-    mako = "python",
+    mako = 'python',
   },
   pattern = {
-    ["requirements.txt"] = "requirements",
+    ['requirements.txt'] = 'requirements',
   },
-})
+}
