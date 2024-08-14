@@ -39,4 +39,16 @@
   xdg.configFile."nvim/lua/plugins/colorscheme.lua" = {
     text = builtins.readFile(./lua/plugins/colorscheme.lua);
   };
+
+  xdg.configFile."nvim/lua/plugins/casing.lua" = {
+    text = builtins.readFile(./lua/plugins/casing.lua);
+  };
+
+  xdg.configFile."nvim/lua/plugins/file_manager.lua" = {
+    text = builtins.readFile(./lua/plugins/file_manager.lua);
+  };
+
+  xdg.configFile."nvim/lua/plugins/mason.lua" = {
+    text = builtins.readFile(./lua/plugins/mason.lua);
+  };
 }
