@@ -36,6 +36,14 @@
     text = builtins.readFile(./lua/config/options.lua);
   };
 
+  xdg.configFile."nvim/lua/config/highlights.lua" = {
+    text = builtins.readFile(./lua/config/highlights.lua);
+  };
+
+  xdg.configFile."nvim/lua/config/autocmds.lua" = {
+    text = builtins.readFile(./lua/config/autocmds.lua);
+  };
+
   xdg.configFile."nvim/lua/plugins/colorscheme.lua" = {
     text = builtins.readFile(./lua/plugins/colorscheme.lua);
   };
@@ -46,5 +54,9 @@
 
   xdg.configFile."nvim/lua/plugins/mason.lua" = {
     text = builtins.readFile(./lua/plugins/mason.lua);
+  };
+
+  xdg.configFile."nvim/lua/plugins/dashboard.lua" = {
+    text = builtins.readFile(./lua/plugins/dashboard.lua);
   };
 }
