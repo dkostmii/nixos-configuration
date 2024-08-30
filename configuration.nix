@@ -187,8 +187,7 @@
   programs.neovim.enable = true;
 
   catppuccin.enable = true;
-  catppuccin.flavor = "latte";
-  catppuccin.accent = "pink";
+  catppuccin.flavor = "mocha";
 
   # List services that you want to enable:
 

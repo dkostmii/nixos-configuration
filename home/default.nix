@@ -8,13 +8,13 @@ let
     sha256 = "sha256-Bhl/U5Tn/Y5gPP8aWuygckdhBXgn7KmCxj/Cgq/C3jU=";
   };
   catppuccin-gtk-theme = pkgs.stdenv.mkDerivation {
-    pname = "catppuccin-latte-pink-standard+default.zip";
+    pname = "catppuccin-mocha-blue-standard+default.zip";
     version = "1.0.3";
     buildInputs = with pkgs; [ unzip ];
 
     src = pkgs.fetchurl {
-      url = "https://github.com/catppuccin/gtk/releases/download/v1.0.3/catppuccin-latte-pink-standard+default.zip";
-      sha256 = "sha256-RSTLtcm3FWu8QfZ1fdbWly54ftUx8W6ax9HD1Cfli98=";
+      url = "https://github.com/catppuccin/gtk/releases/download/v1.0.3/catppuccin-mocha-blue-standard+default.zip";
+      sha256 = "sha256-g4EQUczrMmI/r95BE1AYgEY3DXPudGS7Jihc1jx1O9w=";
     };
 
     sourceRoot = ".";
@@ -24,7 +24,7 @@ let
     '';
 
     meta = with pkgs.lib; {
-      description = "Catppuccin GTK theme with latte preset, pink accent and standard + default";
+      description = "Catppuccin GTK theme with mocha preset, blue accent and standard + default";
       license = licenses.gpl3Only;
       platforms = platforms.all;
       homepage = "https://github.com/catppuccin/gtk";
@@ -54,8 +54,8 @@ in
       glow
     ];
 
-    home.file.".local/share/xfce4/terminal/colorschemes/catppuccin-latte.theme" = {
-      source = "${catppuccin-theme-xfce4-terminal}/themes/catppuccin-latte.theme";
+    home.file.".local/share/xfce4/terminal/colorschemes/catppuccin-mocha.theme" = {
+      source = "${catppuccin-theme-xfce4-terminal}/themes/catppuccin-mocha.theme";
     };
 
     xdg.configFile."gtk-3.0/settings.ini" = {
@@ -67,13 +67,21 @@ in
     };
 
     xdg.configFile."gtk-3.0" = {
-      source = "${catppuccin-gtk-theme}/catppuccin-latte-pink-standard+default/gtk-3.0";
+      source = "${catppuccin-gtk-theme}/catppuccin-mocha-blue-standard+default/gtk-3.0";
       recursive = true;
     };
 
     xdg.configFile."gtk-4.0" = {
-      source = "${catppuccin-gtk-theme}/catppuccin-latte-pink-standard+default/gtk-4.0";
+      source = "${catppuccin-gtk-theme}/catppuccin-mocha-blue-standard+default/gtk-4.0";
       recursive = true;
+    };
+
+    home.file.".local/share/themes/catppuccin-mocha-blue-standard+default" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${catppuccin-gtk-theme}/catppuccin-mocha-blue-standard+default";
+    };
+
+    home.file.".themes/catppuccin-mocha-blue-standard+default" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.local/share/themes/catppuccin-mocha-blue-standard+default";
     };
 
     home.file.".local/share/icons/Papirus" = {
@@ -92,14 +100,6 @@ in
       source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.local/share/icons/Papirus-Light";
     };
 
-    home.file.".local/share/themes/catppuccin-latte-pink-standard+default" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${catppuccin-gtk-theme}/catppuccin-latte-pink-standard+default";
-    };
-
-    home.file.".themes/catppuccin-latte-pink-standard+default" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.local/share/themes/catppuccin-latte-pink-standard+default";
-    };
-
     programs.password-store = {
       enable = true;
       settings = {
@@ -109,8 +109,7 @@ in
 
     catppuccin = {
       enable = true;
-      flavor = "latte";
-      accent = "pink";
+      flavor = "mocha";
     };
 
     programs.bash.enable = true;
@@ -121,6 +120,10 @@ in
         {
           name = "pass-fish-completion";
           src = ./fish/pass-completions;
+        }
+        {
+          name = "nix-shell-prompt-indicator";
+          src = ./fish/nix-shell-prompt-indicator;
         }
       ];
     };
@@ -164,7 +167,7 @@ in
 
     programs.ripgrep.enable = true;
 
-    programs.hyfetch = { 
+    programs.hyfetch = {
       enable = true;
       settings = {
         preset = "rainbow";

@@ -4,6 +4,11 @@ return {
 		lazy = true,
 		name = "catppuccin",
 		opts = {
+			flavour = "mocha",
+			background = {
+				light = "latte",
+				dark = "mocha",
+			},
 			integrations = {
 				aerial = true,
 				alpha = true,
