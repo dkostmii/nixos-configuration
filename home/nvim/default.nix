@@ -55,8 +55,4 @@
   xdg.configFile."nvim/lua/plugins/mason.lua" = {
     text = builtins.readFile(./lua/plugins/mason.lua);
   };
-
-  xdg.configFile."nvim/lua/plugins/dashboard.lua" = {
-    text = builtins.readFile(./lua/plugins/dashboard.lua);
-  };
 }
