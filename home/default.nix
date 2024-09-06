@@ -100,6 +100,22 @@ in
       source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.local/share/icons/Papirus-Light";
     };
 
+    programs.vscode = {
+      enable = true;
+      extensions = with pkgs.vscode-extensions; [
+        catppuccin.catppuccin-vsc-icons
+        catppuccin.catppuccin-vsc
+        vscodevim.vim
+        dbaeumer.vscode-eslint
+        esbenp.prettier-vscode
+        stylelint.vscode-stylelint
+        christian-kohler.npm-intellisense
+        davidanson.vscode-markdownlint
+        eamodio.gitlens
+        jebbs.plantuml
+      ];
+    };
+
     programs.password-store = {
       enable = true;
       settings = {
