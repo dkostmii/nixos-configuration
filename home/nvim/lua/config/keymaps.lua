@@ -49,34 +49,3 @@ vim.api.nvim_set_keymap(
   ':set noexpandtab<CR>:lua vim.notify("expandtab disabled")<CR>',
   { noremap = true, silent = true, desc = 'Disable tab expansion' }
 )
-
-vim.keymap.set(
-  'n',
-  '<leader>ht',
-  function()
-    local highlighting_active = vim.b.trailing_whitespace_match_id ~= nil and vim.b.inter_word_whitespace_match_id ~= nil
-    local bufnr = vim.api.nvim_get_current_buf()
-    local win_id = vim.fn.bufwinid(bufnr)
-
-    if highlighting_active then
-      vim.fn.clearmatches(win_id)
-
-      vim.b.trailing_whitespace_match_id = nil
-      vim.b.inter_word_whitespace_match_id = nil
-
-      vim.notify("Whitespace highlighting disabled")
-
-      return
-    end
-
-    vim.b.trailing_whitespace_match_id = vim.fn.matchadd('TrailingWhitespace', '\\s\\+$', 0, -1, { bufnr = bufnr })
-    vim.b.inter_word_whitespace_match_id = vim.fn.matchadd('InterWordWhitespace', '\\(\\S\\)\\@<=\\s\\{2,\\}\\(\\S\\)\\@=', 0, -1, { bufnr = bufnr })
-
-    vim.notify("Whitespace highlighting enabled")
-  end,
-  {
-    noremap = true,
-    silent = true,
-    desc = 'Toggle whitespace highlighting',
-  }
-)
