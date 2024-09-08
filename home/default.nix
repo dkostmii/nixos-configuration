@@ -65,6 +65,10 @@ in
       text = builtins.readFile(./gtk/shared/settings.ini);
     };
 
+    xdg.configFile."gtk-3.0/bookmarks" = {
+      text = builtins.readFile(./gtk/gtk-3.0/bookmarks);
+    };
+
     xdg.configFile."gtk-4.0/settings.ini" = {
       text = builtins.readFile(./gtk/shared/settings.ini);
     };
