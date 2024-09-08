@@ -55,6 +55,8 @@ in
       lolcat
       cowsay
       fortune
+      felix-fm
+      chafa
     ];
 
     home.file.".local/share/xfce4/terminal/colorschemes/catppuccin-mocha.theme" = {
