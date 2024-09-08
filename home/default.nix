@@ -52,6 +52,9 @@ in
       lazydocker
       blugon
       glow
+      lolcat
+      cowsay
+      fortune
     ];
 
     home.file.".local/share/xfce4/terminal/colorschemes/catppuccin-mocha.theme" = {
@@ -140,6 +143,10 @@ in
         {
           name = "nix-shell-prompt-indicator";
           src = ./fish/nix-shell-prompt-indicator;
+        }
+        {
+          name = "fortune-cowsay-lolcat-greeting";
+          src = ./fish/fortune-cowsay-lolcat-greeting;
         }
       ];
     };
