@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports =
@@ -199,6 +199,53 @@
   services.flatpak.enable = true;
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+
+  services.syncthing = {
+    enable = true;
+    user = "dkostmii";
+    configDir = "/home/dkostmii/.config/syncthing";
+    dataDir = "/home/dkostmii/.config/syncthing/data";
+    overrideDevices = true;     # overrides any devices added or deleted through the WebUI
+    overrideFolders = true;     # overrides any folders added or deleted through the WebUI
+    settings = {
+      gui = (
+      let
+        # Function to read a file, take the first line, and trim it
+        readFirstLineTrimmed = filePath: let
+          # Reading the file content as a string
+          fileContent = builtins.readFile filePath;
+
+          # Splitting the file content into lines and taking the first line
+          firstLine = builtins.head (lib.strings.splitString "\n" fileContent);
+
+          # Trimming the first line
+          trimmedFirstLine = builtins.replaceStrings [" " "\n" "\r" "\t"] ["" "" "" ""] firstLine;
+        in
+          trimmedFirstLine;
+      in
+      {
+        user = readFirstLineTrimmed ./.secrets/syncthing/username;
+        password = readFirstLineTrimmed ./.secrets/syncthing/password;
+      });
+      devices = {
+        "phone" = { id = "EJZFBO2-JTDQTMC-ORW55WG-Z6L4RO2-RM6PDI6-4HLLOEJ-HAATCQN-OTAIXA4"; };
+      };
+      folders = {
+        "sgaf1-z4twt" = {         # Folder ID in Syncthing, also the name of folder (label) by default
+          label = "Knowledge Base";
+          path = "/home/dkostmii/Документи/Obsidian";    # Which folder to add to Syncthing
+          devices = [ "phone" ];      # Which devices to share the folder with
+          ignorePerms = false;
+        };
+        "9qjcl-fuhjb" = {
+          label = "Books";                      # Optional label for the folder
+          path = "/home/dkostmii/Документи/Books";
+          devices = [ "phone" ];
+          ignorePerms = false;  # By default, Syncthing doesn't sync file permissions. This line enables it for this folder.
+        };
+      };
+    };
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
