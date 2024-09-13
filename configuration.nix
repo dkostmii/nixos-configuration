@@ -247,6 +247,14 @@
     };
   };
 
+  users.extraGroups.vboxusers.members = [ "dkostmii" ];
+
+  virtualisation.virtualbox = {
+    host.enable = true;
+    guest.enable = true;
+    guest.draganddrop = true;
+  };
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
