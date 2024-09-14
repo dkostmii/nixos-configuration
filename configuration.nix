@@ -231,12 +231,6 @@
         "phone" = { id = "EJZFBO2-JTDQTMC-ORW55WG-Z6L4RO2-RM6PDI6-4HLLOEJ-HAATCQN-OTAIXA4"; };
       };
       folders = {
-        "sgaf1-z4twt" = {         # Folder ID in Syncthing, also the name of folder (label) by default
-          label = "Knowledge Base";
-          path = "/home/dkostmii/Документи/Obsidian";    # Which folder to add to Syncthing
-          devices = [ "phone" ];      # Which devices to share the folder with
-          ignorePerms = false;
-        };
         "9qjcl-fuhjb" = {
           label = "Books";                      # Optional label for the folder
           path = "/home/dkostmii/Документи/Books";
