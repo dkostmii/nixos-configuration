@@ -2,4 +2,3 @@
 require 'config.lazy'
 require 'config.filetypes'
 require 'config.options'
-require 'config.highlights'
