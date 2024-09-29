@@ -57,6 +57,7 @@ in
       fortune
       felix-fm
       chafa
+      gnome.gnome-software
     ];
 
     home.file.".local/share/xfce4/terminal/colorschemes/catppuccin-mocha.theme" = {
