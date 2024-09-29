@@ -166,13 +166,13 @@
   nix.settings.auto-optimise-store = true;
   nix.gc = {
     automatic = true;
-    dates = "Sat 10:00";
-    options = "--delete-older-than 7d";
+    dates = "monthly";
+    options = "--delete-older-than 30d";
   };
 
   system.autoUpgrade = {
     enable = true;
-    dates = "Sun 10:00";
+    dates = "monthly";
     allowReboot = false;
   };
 
