@@ -138,7 +138,12 @@ in
       flavor = "mocha";
     };
 
-    programs.bash.enable = true;
+    programs.bash = {
+      enable = true;
+      shellAliases = {
+        man = "batman";
+      };
+    };
 
     programs.fish = {
       enable = true;
@@ -156,6 +161,9 @@ in
           src = ./fish/fortune-cowsay-lolcat-greeting;
         }
       ];
+      shellAliases = {
+        man = "batman";
+      };
     };
 
     programs.tmux = {
