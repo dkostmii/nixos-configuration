@@ -58,6 +58,8 @@ in
       felix-fm
       chafa
       gnome.gnome-software
+      dust
+      gh
     ];
 
     home.file.".local/share/xfce4/terminal/colorschemes/catppuccin-mocha.theme" = {
