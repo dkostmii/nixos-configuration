@@ -60,6 +60,9 @@ in
       gnome.gnome-software
       dust
       gh
+      prismlauncher
+      pipes-rs
+      alejandra
     ];
 
     programs.alacritty = {
