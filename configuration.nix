@@ -51,9 +51,9 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  # Enable the XFCE Desktop Environment.
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.desktopManager.xfce.enable = true;
+  # Enable the GNOME Desktop Environment.
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
@@ -103,9 +103,9 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
-     xdg-desktop-portal-gtk
+     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+     wget
+     curl
      xclip
      xdotool
      xsel
@@ -114,24 +114,6 @@
      xtitle
      xorg.xev
      blueman
-     xfce.catfish
-     xfce.gigolo
-     xfce.orage
-     xfce.xfburn
-     xfce.xfce4-appfinder
-     xfce.xfce4-clipman-plugin
-     xfce.xfce4-cpugraph-plugin
-     xfce.xfce4-dict
-     xfce.xfce4-fsguard-plugin
-     xfce.xfce4-genmon-plugin
-     xfce.xfce4-netload-plugin
-     xfce.xfce4-panel
-     xfce.xfce4-pulseaudio-plugin
-     xfce.xfce4-systemload-plugin
-     xfce.xfce4-weather-plugin
-     xfce.xfce4-whiskermenu-plugin
-     xfce.xfce4-xkb-plugin
-     xfce.xfdashboard
      zip
      unzip
      gcc
@@ -198,7 +180,6 @@
 
   services.flatpak.enable = true;
   xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   services.syncthing = {
     enable = true;
