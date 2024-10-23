@@ -62,6 +62,30 @@ in
       gh
     ];
 
+    programs.alacritty = {
+      enable = true;
+      # Specify the font configuration
+      settings = {
+        font = {
+          normal = {
+            family = "D2CodingLigature Nerd Font";
+            style = "Regular";
+          };
+          bold = {
+            family = "D2CodingLigature Nerd Font";
+            style = "Bold";
+          };
+          italic = {
+            family = "D2CodingLigature Nerd Font";
+            style = "Italic";
+          };
+        };
+        shell = {
+          program = "${pkgs.fish}/bin/fish";  # Adjust the path if necessary
+        };
+      };
+    };
+
     home.file.".local/share/xfce4/terminal/colorschemes/catppuccin-mocha.theme" = {
       source = "${catppuccin-theme-xfce4-terminal}/themes/catppuccin-mocha.theme";
     };
