@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-let
+{pkgs, ...}: let
   catppuccin-theme-xfce4-terminal = pkgs.fetchFromGitHub {
     owner = "catppuccin";
     repo = "xfce4-terminal";
@@ -10,7 +8,7 @@ let
   catppuccin-gtk-theme = pkgs.stdenv.mkDerivation {
     pname = "catppuccin-mocha-blue-standard+default.zip";
     version = "1.0.3";
-    buildInputs = with pkgs; [ unzip ];
+    buildInputs = with pkgs; [unzip];
 
     src = pkgs.fetchurl {
       url = "https://github.com/catppuccin/gtk/releases/download/v1.0.3/catppuccin-mocha-blue-standard+default.zip";
@@ -30,9 +28,12 @@ let
       homepage = "https://github.com/catppuccin/gtk";
     };
   };
-in
-{
-  home-manager.users.dkostmii = { config, pkgs, ... }: {
+in {
+  home-manager.users.dkostmii = {
+    config,
+    pkgs,
+    ...
+  }: {
     imports = [
       <catppuccin/modules/home-manager>
       ./nvim/default.nix
@@ -84,7 +85,7 @@ in
           };
         };
         shell = {
-          program = "${pkgs.fish}/bin/fish";  # Adjust the path if necessary
+          program = "${pkgs.fish}/bin/fish"; # Adjust the path if necessary
         };
       };
     };
@@ -94,15 +95,15 @@ in
     };
 
     xdg.configFile."gtk-3.0/settings.ini" = {
-      text = builtins.readFile(./gtk/shared/settings.ini);
+      text = builtins.readFile ./gtk/shared/settings.ini;
     };
 
     xdg.configFile."gtk-3.0/bookmarks" = {
-      text = builtins.readFile(./gtk/gtk-3.0/bookmarks);
+      text = builtins.readFile ./gtk/gtk-3.0/bookmarks;
     };
 
     xdg.configFile."gtk-4.0/settings.ini" = {
-      text = builtins.readFile(./gtk/shared/settings.ini);
+      text = builtins.readFile ./gtk/shared/settings.ini;
     };
 
     xdg.configFile."gtk-3.0" = {
@@ -223,7 +224,7 @@ in
       enable = true;
       enableBashIntegration = true;
       enableFishIntegration = true;
-      options = [ "--hook" "pwd" "--cmd" "cd"];
+      options = ["--hook" "pwd" "--cmd" "cd"];
     };
 
     programs.fzf = {
@@ -249,7 +250,7 @@ in
     programs.btop.enable = true;
     programs.bat = {
       enable = true;
-      extraPackages = with pkgs.bat-extras; [ batdiff batman batgrep batwatch ];
+      extraPackages = with pkgs.bat-extras; [batdiff batman batgrep batwatch];
     };
 
     programs.eza = {
