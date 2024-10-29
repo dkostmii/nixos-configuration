@@ -87,6 +87,9 @@ in {
         shell = {
           program = "${pkgs.fish}/bin/fish"; # Adjust the path if necessary
         };
+        scrolling = {
+          history = 50000;
+        };
       };
     };
 
